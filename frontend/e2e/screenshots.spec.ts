@@ -318,7 +318,7 @@ test.describe('Screen captures', () => {
   test('renders every screen with data', async ({ page, request }) => {
     mkdirSync(SHOTS, { recursive: true })
     const { customer, deal } = await seed(request)
-    const heading = (name: RegExp) => page.getByRole('heading', { name })
+    const heading = (name: RegExp, level?: 1 | 2) => page.getByRole('heading', { name, level })
 
     await page.setViewportSize(DESKTOP)
 
@@ -351,13 +351,13 @@ test.describe('Screen captures', () => {
     await capture(page, '09-activities', page.getByText('Discovery call').first())
 
     await page.goto('/ai')
-    await capture(page, '10-ai', heading(/^AI assistant$/i))
+    await capture(page, '10-ai', heading(/^AI assistant$/i, 2))
 
     await page.goto('/settings')
-    await capture(page, '11-settings', heading(/^Settings$/i))
+    await capture(page, '11-settings', heading(/^Settings$/i, 2))
 
     await page.goto('/team')
-    await capture(page, '12-team', heading(/^Team$/i))
+    await capture(page, '12-team', heading(/^Team$/i, 2))
 
     // A form, so the dialog design is visible too.
     await page.goto('/customers')
