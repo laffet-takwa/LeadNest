@@ -32,7 +32,7 @@ describe('ConfirmDialog', () => {
   })
 
   it('keeps the dialog open and blocks a second submission while the request runs', async () => {
-    const user = userEvent.setup()
+    const user = userEvent.setup({ pointerEventsCheck: 0 })
     let release: (() => void) | undefined
     const onConfirm = vi.fn(
       () =>
@@ -62,7 +62,7 @@ describe('ConfirmDialog', () => {
     expect(confirm).toHaveAttribute('aria-busy', 'true')
 
     // A second click while the request is running must not fire again.
-    await user.click(confirm, { pointerEventsCheck: 0 })
+    await user.click(confirm)
     expect(onConfirm).toHaveBeenCalledTimes(1)
 
     release?.()

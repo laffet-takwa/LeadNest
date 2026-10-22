@@ -14,10 +14,12 @@
  * Trade-off: a refresh token in `localStorage` is readable by any script that
  * runs in the origin, so a successful XSS attack could steal it. The
  * alternative — never persisting the refresh token — turns every reload into
- * a login, which is worse for a daily-driver CRM. The token is short-lived,
- * is rotated on every refresh, and is revoked server-side on logout. Moving
- * to HttpOnly cookies requires a backend change and is documented as the
- * recommended follow-up.
+ * a login, which is worse for a daily-driver CRM. Note that the backend only
+ * rotates the refresh token on login, registration and password change — not
+ * on `/auth/refresh` — so the same opaque token is replayed until the user
+ * signs in again, and a second login replaces it and invalidates this session.
+ * Moving to HttpOnly cookies requires a backend change and is documented as
+ * the recommended follow-up.
  */
 
 const REFRESH_TOKEN_KEY = 'leadnest.refresh_token'

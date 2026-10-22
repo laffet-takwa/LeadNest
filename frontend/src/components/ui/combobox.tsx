@@ -189,11 +189,6 @@ export function Combobox({
             event.preventDefault()
             searchRef.current?.focus()
           }}
-          onCloseAutoFocus={(event) => {
-            // Focus returns to the trigger, which Radix does by default; the
-            // event is only intercepted to keep the query in sync.
-            event.preventDefault()
-          }}
         >
           <div className="relative mb-1">
             <Search
