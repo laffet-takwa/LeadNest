@@ -7,16 +7,9 @@
 
 import { z } from 'zod'
 
-const email = z
-  .string()
-  .trim()
-  .min(1, 'Email is required')
-  .email('Enter a valid email address')
+const email = z.string().trim().min(1, 'Email is required').email('Enter a valid email address')
 
-const password = z
-  .string()
-  .min(8, 'Use at least 8 characters')
-  .max(200, 'Password is too long')
+const password = z.string().min(8, 'Use at least 8 characters').max(200, 'Password is too long')
 
 /** Phone numbers are optional and, when present, digits with an optional +. */
 const phone = z
@@ -33,24 +26,21 @@ export const loginSchema = z.object({
 
 export type LoginInput = z.infer<typeof loginSchema>
 
-export const registerSchema = z.object({
-  companyName: z.string().trim().min(1, 'Company name is required').max(200),
-  companyEmail: email.optional().or(z.literal('')),
-  companyPhone: phone,
-  companyWebsite: z
-    .string()
-    .trim()
-    .url('Enter a valid URL')
-    .optional()
-    .or(z.literal('')),
-  fullName: z.string().trim().min(1, 'Your name is required').max(200),
-  adminEmail: email,
-  adminPassword: password,
-  confirmPassword: z.string().min(1, 'Confirm your password'),
-}).refine((values) => values.adminPassword === values.confirmPassword, {
-  path: ['confirmPassword'],
-  message: 'Passwords do not match',
-})
+export const registerSchema = z
+  .object({
+    companyName: z.string().trim().min(1, 'Company name is required').max(200),
+    companyEmail: email.optional().or(z.literal('')),
+    companyPhone: phone,
+    companyWebsite: z.string().trim().url('Enter a valid URL').optional().or(z.literal('')),
+    fullName: z.string().trim().min(1, 'Your name is required').max(200),
+    adminEmail: email,
+    adminPassword: password,
+    confirmPassword: z.string().min(1, 'Confirm your password'),
+  })
+  .refine((values) => values.adminPassword === values.confirmPassword, {
+    path: ['confirmPassword'],
+    message: 'Passwords do not match',
+  })
 
 export type RegisterInput = z.infer<typeof registerSchema>
 

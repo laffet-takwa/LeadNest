@@ -3,12 +3,7 @@
  */
 
 import { getOne } from '@/lib/api/client'
-import type {
-  DashboardOverview,
-  RecentActivity,
-  StatusBucket,
-  UpcomingTask,
-} from '@/types/api'
+import type { DashboardOverview, RecentActivity, StatusBucket, UpcomingTask } from '@/types/api'
 
 export const dashboardApi = {
   /** `GET /dashboard` — the full dashboard payload. */

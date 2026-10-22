@@ -6,15 +6,7 @@
  * them does not hide the deal.
  */
 
-import {
-  CalendarPlus,
-  Mail,
-  Pencil,
-  Phone,
-  Target,
-  Trash2,
-  UserRound,
-} from 'lucide-react'
+import { CalendarPlus, Mail, Pencil, Phone, Target, Trash2, UserRound } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 
@@ -183,9 +175,7 @@ export function DealDetailPage() {
               </div>
               <div>
                 <dt className="text-xs font-medium text-ink-muted">Created</dt>
-                <dd className="mt-0.5 text-sm text-ink-secondary">
-                  {formatDate(deal.created_at)}
-                </dd>
+                <dd className="mt-0.5 text-sm text-ink-secondary">{formatDate(deal.created_at)}</dd>
               </div>
             </dl>
 
@@ -373,11 +363,7 @@ export function DealDetailPage() {
         </div>
       </div>
 
-      <DealFormDialog
-        open={editOpen}
-        onOpenChange={setEditOpen}
-        deal={deal}
-      />
+      <DealFormDialog open={editOpen} onOpenChange={setEditOpen} deal={deal} />
 
       <ConfirmDialog
         open={confirmDelete}
@@ -385,8 +371,8 @@ export function DealDetailPage() {
         title="Delete this deal?"
         description={
           <>
-            <strong className="font-medium text-ink">{deal.title}</strong> and its related tasks will
-            be permanently removed. This cannot be undone.
+            <strong className="font-medium text-ink">{deal.title}</strong> and its related tasks
+            will be permanently removed. This cannot be undone.
           </>
         }
         confirmLabel="Delete deal"

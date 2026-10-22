@@ -14,8 +14,9 @@ import { cn } from '@/lib/utils'
 
 export const RadioGroup = RadioGroupPrimitive.Root
 
-export interface RadioGroupItemProps
-  extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
+export interface RadioGroupItemProps extends React.ComponentPropsWithoutRef<
+  typeof RadioGroupPrimitive.Item
+> {
   /** The text label. */
   label: string
   /** Optional supporting text under the label. */
@@ -27,7 +28,10 @@ export interface RadioGroupItemProps
 export const RadioGroupItem = forwardRef<
   React.ElementRef<typeof RadioGroupPrimitive.Item>,
   RadioGroupItemProps
->(function RadioGroupItem({ className, label, description, card = false, children, ...props }, ref) {
+>(function RadioGroupItem(
+  { className, label, description, card = false, children, ...props },
+  ref,
+) {
   return (
     <RadioGroupPrimitive.Item
       ref={ref}
@@ -43,7 +47,9 @@ export const RadioGroupItem = forwardRef<
       <span
         className={cn(
           'mt-0.5 flex size-4 shrink-0 items-center justify-center rounded-full border-2 transition-colors',
-          card ? 'border-ink-muted/50 group-data-[state=checked]:border-brand-600' : 'border-ink-muted/50',
+          card
+            ? 'border-ink-muted/50 group-data-[state=checked]:border-brand-600'
+            : 'border-ink-muted/50',
           'group-data-[state=checked]:border-brand-600',
         )}
         aria-hidden="true"

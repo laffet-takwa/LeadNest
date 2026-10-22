@@ -18,11 +18,20 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input, Textarea } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useCreateActivity } from '@/features/activities/hooks/use-activities'
 import { useCustomers } from '@/features/customers/hooks/use-customers'
 import { useDeals } from '@/features/deals/hooks/use-deals'
-import { activitySchema, type ActivityFormValues } from '@/features/activities/schemas/activity.schemas'
+import {
+  activitySchema,
+  type ActivityFormValues,
+} from '@/features/activities/schemas/activity.schemas'
 import { ACTIVITY_TYPES } from '@/lib/constants/domain'
 import { ApiError } from '@/lib/api/client'
 import type { Activity } from '@/types/api'
@@ -121,7 +130,12 @@ export function ActivityFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate>
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+        >
           <DialogBody className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <FormField
@@ -132,7 +146,9 @@ export function ActivityFormDialog({
               >
                 <Select
                   value={selectedCustomerId || undefined}
-                  onValueChange={(value) => setValue('customer_id', value, { shouldValidate: true })}
+                  onValueChange={(value) =>
+                    setValue('customer_id', value, { shouldValidate: true })
+                  }
                 >
                   <SelectTrigger id="activity-customer" aria-label="Customer">
                     <SelectValue placeholder="Choose a customer" />

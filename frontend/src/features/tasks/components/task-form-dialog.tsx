@@ -18,7 +18,13 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input, Textarea } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useCreateTask, useUpdateTask } from '@/features/tasks/hooks/use-tasks'
 import { useCustomers } from '@/features/customers/hooks/use-customers'
 import { useDeals } from '@/features/deals/hooks/use-deals'
@@ -151,7 +157,12 @@ export function TaskFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate>
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+        >
           <DialogBody className="space-y-4">
             <FormField label="Title" htmlFor="task-title" error={errors.title?.message} required>
               <Input

@@ -44,9 +44,24 @@ const THEME_OPTIONS: {
   description: string
   icon: typeof Sun
 }[] = [
-  { value: 'light', label: 'Light', description: 'A bright interface for daytime work.', icon: Sun },
-  { value: 'dark', label: 'Dark', description: 'A dimmed interface that is easier at night.', icon: Moon },
-  { value: 'system', label: 'System', description: 'Follow whatever your device is set to.', icon: Monitor },
+  {
+    value: 'light',
+    label: 'Light',
+    description: 'A bright interface for daytime work.',
+    icon: Sun,
+  },
+  {
+    value: 'dark',
+    label: 'Dark',
+    description: 'A dimmed interface that is easier at night.',
+    icon: Moon,
+  },
+  {
+    value: 'system',
+    label: 'System',
+    description: 'Follow whatever your device is set to.',
+    icon: Monitor,
+  },
 ]
 
 const companySchema = z.object({
@@ -238,8 +253,8 @@ function CompanySettings() {
             </div>
           </dl>
           <p className="mt-4 rounded-input bg-surface-sunken px-3.5 py-2.5 text-xs text-ink-secondary">
-            Only an administrator can change the company details. Ask an administrator if
-            something needs updating.
+            Only an administrator can change the company details. Ask an administrator if something
+            needs updating.
           </p>
         </CardBody>
       </Card>
@@ -257,14 +272,25 @@ function CompanySettings() {
         </div>
       </CardHeader>
       <CardBody>
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate className="space-y-4">
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+          className="space-y-4"
+        >
           {formError ? (
             <p role="alert" className="rounded-input bg-danger-soft px-3 py-2 text-sm text-danger">
               {formError}
             </p>
           ) : null}
 
-          <FormField label="Company name" htmlFor="company-name" error={errors.name?.message} required>
+          <FormField
+            label="Company name"
+            htmlFor="company-name"
+            error={errors.name?.message}
+            required
+          >
             <Input
               {...register('name')}
               {...fieldA11y('company-name', errors.name?.message)}
@@ -452,9 +478,18 @@ function SecuritySettings() {
           </div>
         </CardHeader>
         <CardBody>
-          <form onSubmit={(event) => { void onSubmit(event) }} noValidate className="space-y-4">
+          <form
+            onSubmit={(event) => {
+              void onSubmit(event)
+            }}
+            noValidate
+            className="space-y-4"
+          >
             {formError ? (
-              <p role="alert" className="rounded-input bg-danger-soft px-3 py-2 text-sm text-danger">
+              <p
+                role="alert"
+                className="rounded-input bg-danger-soft px-3 py-2 text-sm text-danger"
+              >
                 {formError}
               </p>
             ) : null}
@@ -511,11 +546,7 @@ function SecuritySettings() {
             </FormField>
 
             <div className="flex justify-end">
-              <Button
-                type="submit"
-                loading={isSubmitting}
-                icon={<KeyRound className="size-4" />}
-              >
+              <Button type="submit" loading={isSubmitting} icon={<KeyRound className="size-4" />}>
                 Change password
               </Button>
             </div>
@@ -535,8 +566,8 @@ function SecuritySettings() {
             short-lived and stored only in memory for the duration of the session.
           </p>
           <p>
-            Signing out revokes the stored refresh token immediately, so a copied link cannot be used
-            to restore the session.
+            Signing out revokes the stored refresh token immediately, so a copied link cannot be
+            used to restore the session.
           </p>
           <p className="rounded-input bg-surface-sunken px-3.5 py-2.5 text-xs">
             The backend does not expose a two-factor endpoint yet, so it cannot be enabled here.

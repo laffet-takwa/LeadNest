@@ -35,9 +35,7 @@ export function CustomerAvatar({
       <Avatar name={name} size={size} />
       <span className="min-w-0">
         <span className="block truncate text-sm font-medium text-ink">{name}</span>
-        {company ? (
-          <span className="block truncate text-xs text-ink-muted">{company}</span>
-        ) : null}
+        {company ? <span className="block truncate text-xs text-ink-muted">{company}</span> : null}
       </span>
     </span>
   )

@@ -179,8 +179,7 @@ export function TasksPage() {
                 : data?.data.map((task) => {
                     const assignee = assignees.find((member) => member.id === task.assigned_to)
                     const overdue = task.status === 'pending' && isPast(task.due_date)
-                    const completing =
-                      updateTask.isPending && updateTask.variables?.id === task.id
+                    const completing = updateTask.isPending && updateTask.variables?.id === task.id
 
                     return (
                       <li key={task.id} className="flex items-start gap-2">
@@ -227,9 +226,7 @@ export function TasksPage() {
           total={data.meta.total}
           limit={data.meta.limit}
           offset={data.meta.offset}
-          onOffsetChange={(next) =>
-            setParam({ offset: next === 0 ? null : String(next) })
-          }
+          onOffsetChange={(next) => setParam({ offset: next === 0 ? null : String(next) })}
         />
       ) : null}
 

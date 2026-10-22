@@ -14,10 +14,7 @@ export function LeadNestLogo({ className }: { className?: string }) {
       aria-hidden="true"
     >
       <svg viewBox="0 0 24 24" className="size-4.5" fill="none">
-        <path
-          d="M5 18V6h3.4l6.2 8.3V6H18v12h-3.4L8.4 9.7V18H5Z"
-          fill="currentColor"
-        />
+        <path d="M5 18V6h3.4l6.2 8.3V6H18v12h-3.4L8.4 9.7V18H5Z" fill="currentColor" />
       </svg>
     </span>
   )

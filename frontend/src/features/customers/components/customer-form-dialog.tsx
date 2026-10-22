@@ -21,8 +21,17 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input, Textarea } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { customerSchema, type CustomerFormValues } from '@/features/customers/schemas/customer.schemas'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import {
+  customerSchema,
+  type CustomerFormValues,
+} from '@/features/customers/schemas/customer.schemas'
 import { useCreateCustomer, useUpdateCustomer } from '@/features/customers/hooks/use-customers'
 import { useAssigneeOptions } from '@/features/companies/hooks/use-company'
 import { CUSTOMER_SOURCES, NO_ASSIGNEE } from '@/lib/constants/domain'
@@ -156,7 +165,12 @@ export function CustomerFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate>
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+        >
           <DialogBody className="space-y-4">
             <div className="grid gap-4 sm:grid-cols-2">
               <FormField

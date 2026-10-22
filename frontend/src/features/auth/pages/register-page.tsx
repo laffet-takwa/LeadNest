@@ -94,7 +94,13 @@ export function RegisterPage() {
         </div>
       ) : null}
 
-      <form onSubmit={(event) => { void onSubmit(event) }} noValidate className="space-y-5">
+      <form
+        onSubmit={(event) => {
+          void onSubmit(event)
+        }}
+        noValidate
+        className="space-y-5"
+      >
         <fieldset className="space-y-4">
           <legend className="mb-2 text-xs font-semibold uppercase tracking-wide text-ink-muted">
             Your company

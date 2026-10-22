@@ -7,7 +7,13 @@ import { useEffect, useState, type ReactNode } from 'react'
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useDebouncedValue } from '@/hooks/use-debounced-value'
 import { ALL_OPTIONS, PAGE_SIZE_OPTIONS } from '@/lib/constants/domain'
 import { cn, pageCount, pageNumber } from '@/lib/utils'
@@ -31,12 +37,7 @@ export function Pagination({
   const to = Math.min(offset + limit, total)
 
   return (
-    <div
-      className={cn(
-        'flex flex-col items-center justify-between gap-3 sm:flex-row',
-        className,
-      )}
-    >
+    <div className={cn('flex flex-col items-center justify-between gap-3 sm:flex-row', className)}>
       <p className="text-xs text-ink-secondary" aria-live="polite">
         {total === 0 ? 'No results' : `Showing ${from}–${to} of ${total}`}
       </p>

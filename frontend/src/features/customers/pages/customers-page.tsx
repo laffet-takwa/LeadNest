@@ -62,18 +62,21 @@ export function CustomersPage() {
    * each read the same stale query string and the second would undo the first.
    */
   const setParams = (updates: Record<string, string | null>) => {
-    setSearchParams((previous) => {
-      const next = new URLSearchParams(previous)
-      for (const [key, value] of Object.entries(updates)) {
-        if (value === null || value === '') {
-          next.delete(key)
-        } else {
-          next.set(key, value)
+    setSearchParams(
+      (previous) => {
+        const next = new URLSearchParams(previous)
+        for (const [key, value] of Object.entries(updates)) {
+          if (value === null || value === '') {
+            next.delete(key)
+          } else {
+            next.set(key, value)
+          }
         }
-      }
-      if (!('offset' in updates)) next.delete('offset')
-      return next
-    }, { replace: true })
+        if (!('offset' in updates)) next.delete('offset')
+        return next
+      },
+      { replace: true },
+    )
   }
 
   /** Writes a single filter back to the URL. */
@@ -87,12 +90,7 @@ export function CustomersPage() {
       header: 'Customer',
       primary: true,
       cell: (row) => (
-        <CustomerAvatar
-          name={row.full_name}
-          company={row.company}
-          size="sm"
-          withDetails
-        />
+        <CustomerAvatar name={row.full_name} company={row.company} size="sm" withDetails />
       ),
     },
     {

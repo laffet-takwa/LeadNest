@@ -22,9 +22,7 @@ describe('Combobox', () => {
   it('shows the selected label and reports the chosen value', async () => {
     const user = userEvent.setup()
     const onValueChange = vi.fn()
-    render(
-      <Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />,
-    )
+    render(<Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />)
 
     const trigger = screen.getByRole('button', { name: 'Customer' })
     expect(trigger).toHaveTextContent('Select…')
@@ -63,9 +61,7 @@ describe('Combobox', () => {
   it('moves the active option with the arrow keys and confirms with Enter', async () => {
     const user = userEvent.setup()
     const onValueChange = vi.fn()
-    render(
-      <Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />,
-    )
+    render(<Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />)
 
     await user.click(screen.getByRole('button', { name: 'Customer' }))
     const search = await screen.findByRole('combobox')
@@ -84,9 +80,7 @@ describe('Combobox', () => {
   it('confirms the first option when nothing is typed', async () => {
     const user = userEvent.setup()
     const onValueChange = vi.fn()
-    render(
-      <Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />,
-    )
+    render(<Combobox label="Customer" value="" onValueChange={onValueChange} options={OPTIONS} />)
 
     await user.click(screen.getByRole('button', { name: 'Customer' }))
     await screen.findByRole('combobox')

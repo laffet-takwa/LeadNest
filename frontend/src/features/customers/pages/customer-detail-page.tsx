@@ -112,7 +112,9 @@ export function CustomerDetailPage() {
               <div className="min-w-0">
                 <p className="truncate font-semibold text-ink">{customer.full_name}</p>
                 {customer.source ? (
-                  <p className="truncate text-xs capitalize text-ink-secondary">{customer.source}</p>
+                  <p className="truncate text-xs capitalize text-ink-secondary">
+                    {customer.source}
+                  </p>
                 ) : null}
               </div>
             </div>
@@ -154,10 +156,7 @@ export function CustomerDetailPage() {
 
               {customer.company ? (
                 <div className="flex items-start gap-2.5">
-                  <Building2
-                    className="mt-0.5 size-4 shrink-0 text-ink-muted"
-                    aria-hidden="true"
-                  />
+                  <Building2 className="mt-0.5 size-4 shrink-0 text-ink-muted" aria-hidden="true" />
                   <div className="min-w-0">
                     <dt className="sr-only">Company</dt>
                     <dd className="truncate text-ink-secondary">{customer.company}</dd>
@@ -166,10 +165,7 @@ export function CustomerDetailPage() {
               ) : null}
 
               <div className="flex items-start gap-2.5">
-                <UserRound
-                  className="mt-0.5 size-4 shrink-0 text-ink-muted"
-                  aria-hidden="true"
-                />
+                <UserRound className="mt-0.5 size-4 shrink-0 text-ink-muted" aria-hidden="true" />
                 <div className="min-w-0">
                   <dt className="sr-only">Assigned employee</dt>
                   <dd className="truncate text-ink-secondary">

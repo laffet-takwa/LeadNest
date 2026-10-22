@@ -32,27 +32,26 @@ const SIZES = {
   lg: 'size-12 text-base',
 } as const
 
-export const Avatar = forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  AvatarProps
->(function Avatar({ className, name, fallback, size = 'md', ...props }, ref) {
-  const label = fallback ?? initials(name)
+export const Avatar = forwardRef<React.ElementRef<typeof AvatarPrimitive.Root>, AvatarProps>(
+  function Avatar({ className, name, fallback, size = 'md', ...props }, ref) {
+    const label = fallback ?? initials(name)
 
-  return (
-    <AvatarPrimitive.Root
-      ref={ref}
-      className={cn(
-        'relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden rounded-full font-semibold',
-        SIZES[size],
-        AVATAR_TONES[colorIndex(name || fallback || '?')],
-        className,
-      )}
-      {...props}
-    >
-      <AvatarPrimitive.Fallback delayMs={0}>{label}</AvatarPrimitive.Fallback>
-    </AvatarPrimitive.Root>
-  )
-})
+    return (
+      <AvatarPrimitive.Root
+        ref={ref}
+        className={cn(
+          'relative inline-flex shrink-0 select-none items-center justify-center overflow-hidden rounded-full font-semibold',
+          SIZES[size],
+          AVATAR_TONES[colorIndex(name || fallback || '?')],
+          className,
+        )}
+        {...props}
+      >
+        <AvatarPrimitive.Fallback delayMs={0}>{label}</AvatarPrimitive.Fallback>
+      </AvatarPrimitive.Root>
+    )
+  },
+)
 
 export const Separator = forwardRef<
   React.ElementRef<typeof SeparatorPrimitive.Root>,

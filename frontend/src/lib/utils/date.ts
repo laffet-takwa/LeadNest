@@ -53,7 +53,8 @@ export function formatRelative(value: string | Date | null | undefined): string 
 
   const hours = Math.round(minutes / 60)
   if (hours > 0 && hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`
-  if (hours < 0 && hours > -24) return `in ${Math.abs(hours)} hour${Math.abs(hours) === 1 ? '' : 's'}`
+  if (hours < 0 && hours > -24)
+    return `in ${Math.abs(hours)} hour${Math.abs(hours) === 1 ? '' : 's'}`
 
   const days = differenceInCalendarDays(new Date(), date)
   if (days === 0) return 'today'

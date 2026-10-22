@@ -25,7 +25,13 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { FormField, fieldA11y } from '@/components/forms/form-field'
 import { EmptyState, ErrorState } from '@/components/feedback/state'
 import {
@@ -264,10 +270,18 @@ function AddMemberDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate>
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+        >
           <DialogBody className="space-y-4">
             {formError ? (
-              <p role="alert" className="rounded-input bg-danger-soft px-3 py-2 text-sm text-danger">
+              <p
+                role="alert"
+                className="rounded-input bg-danger-soft px-3 py-2 text-sm text-danger"
+              >
                 {formError}
               </p>
             ) : null}
@@ -314,9 +328,7 @@ function AddMemberDialog({
             <FormField label="Role" htmlFor="member-role" error={errors.role?.message}>
               <Select
                 value={role}
-                onValueChange={(value) =>
-                  setValue('role', value as Role, { shouldValidate: true })
-                }
+                onValueChange={(value) => setValue('role', value as Role, { shouldValidate: true })}
               >
                 <SelectTrigger id="member-role" aria-label="Role">
                   <SelectValue />

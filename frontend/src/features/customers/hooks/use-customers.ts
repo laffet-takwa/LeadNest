@@ -48,8 +48,7 @@ export function useCustomerSearch(term: string, limit = 6) {
   const trimmed = term.trim()
   return useQuery({
     queryKey: [...queryKeys.customers.all, 'search', trimmed, limit] as const,
-    queryFn: ({ signal }) =>
-      customersApi.list({ search: trimmed, limit }, { signal }),
+    queryFn: ({ signal }) => customersApi.list({ search: trimmed, limit }, { signal }),
     enabled: trimmed.length >= 2,
     staleTime: 30 * 1000,
   })

@@ -253,7 +253,9 @@ export function Combobox({
                 )}
               >
                 {emptyLabel}
-                {value === '' ? <Check className="size-3.5 text-success" aria-hidden="true" /> : null}
+                {value === '' ? (
+                  <Check className="size-3.5 text-success" aria-hidden="true" />
+                ) : null}
               </li>
             ) : null}
 

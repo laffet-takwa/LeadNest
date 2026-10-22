@@ -82,7 +82,13 @@ export function LoginPage() {
         </div>
       ) : null}
 
-      <form onSubmit={(event) => { void onSubmit(event) }} noValidate className="space-y-4">
+      <form
+        onSubmit={(event) => {
+          void onSubmit(event)
+        }}
+        noValidate
+        className="space-y-4"
+      >
         <FormField label="Email" htmlFor="login-email" error={errors.email?.message} required>
           <Input
             type="email"
@@ -94,7 +100,12 @@ export function LoginPage() {
           />
         </FormField>
 
-        <FormField label="Password" htmlFor="login-password" error={errors.password?.message} required>
+        <FormField
+          label="Password"
+          htmlFor="login-password"
+          error={errors.password?.message}
+          required
+        >
           <div className="relative">
             <Input
               type={showPassword ? 'text' : 'password'}

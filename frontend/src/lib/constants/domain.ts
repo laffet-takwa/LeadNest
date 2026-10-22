@@ -5,12 +5,7 @@
  * API is always one the backend accepts.
  */
 
-import type {
-  ActivityType,
-  DealStatus,
-  TaskPriority,
-  TaskStatus,
-} from '@/types/api'
+import type { ActivityType, DealStatus, TaskPriority, TaskStatus } from '@/types/api'
 
 export interface StatusOption<T extends string> {
   value: T

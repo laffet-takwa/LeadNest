@@ -30,8 +30,9 @@ export const DialogOverlay = forwardRef<
   )
 })
 
-export interface DialogContentProps
-  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+export interface DialogContentProps extends React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Content
+> {
   /** Hides the close button when the dialog must be dismissed deliberately. */
   hideClose?: boolean
 }

@@ -45,9 +45,7 @@ export function useUpdateTask() {
     onSuccess: (_data, variables) => {
       void queryClient.invalidateQueries({ queryKey: queryKeys.tasks.all })
       void queryClient.invalidateQueries({ queryKey: queryKeys.dashboard.all })
-      toast.success(
-        variables.payload.status === 'completed' ? 'Task completed' : 'Task updated',
-      )
+      toast.success(variables.payload.status === 'completed' ? 'Task completed' : 'Task updated')
     },
     onError: (error: unknown) => {
       toast.error(error instanceof ApiError ? error.message : 'Could not update the task')

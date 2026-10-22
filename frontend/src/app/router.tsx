@@ -47,7 +47,9 @@ const ActivitiesPage = lazy(() =>
     default: m.ActivitiesPage,
   })),
 )
-const AIPage = lazy(() => import('@/features/ai/pages/ai-page').then((m) => ({ default: m.AIPage })))
+const AIPage = lazy(() =>
+  import('@/features/ai/pages/ai-page').then((m) => ({ default: m.AIPage })),
+)
 const TeamPage = lazy(() =>
   import('@/features/users/pages/team-page').then((m) => ({ default: m.TeamPage })),
 )
@@ -93,8 +95,8 @@ function RequireAdmin({ children }: { children: React.ReactNode }) {
       <div className="mx-auto max-w-md rounded-card border border-border bg-surface p-6 text-center shadow-xs">
         <h1 className="text-lg font-semibold text-ink">This area is for administrators</h1>
         <p className="mt-1.5 text-sm text-ink-secondary">
-          Your account does not have permission to manage the team. Ask an administrator if you
-          need access.
+          Your account does not have permission to manage the team. Ask an administrator if you need
+          access.
         </p>
         <Link
           to="/dashboard"

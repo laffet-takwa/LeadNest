@@ -10,7 +10,12 @@ import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
 import * as LabelPrimitive from '@radix-ui/react-label'
 import * as SwitchPrimitive from '@radix-ui/react-switch'
 import { Check, Minus } from 'lucide-react'
-import { forwardRef, type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from 'react'
+import {
+  forwardRef,
+  type InputHTMLAttributes,
+  type ReactNode,
+  type TextareaHTMLAttributes,
+} from 'react'
 
 import { cn } from '@/lib/utils'
 

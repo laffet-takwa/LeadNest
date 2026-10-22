@@ -3,13 +3,7 @@
  */
 
 import { getList, getOne, patch, post, remove } from '@/lib/api/client'
-import type {
-  Activity,
-  Customer,
-  CustomerListParams,
-  CustomerPayload,
-  Deal,
-} from '@/types/api'
+import type { Activity, Customer, CustomerListParams, CustomerPayload, Deal } from '@/types/api'
 
 /** A customer together with the related records the backend can include. */
 export type CustomerWithDetails = Customer & {

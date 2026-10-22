@@ -122,7 +122,9 @@ export function useDeactivateEmployee() {
       toast.success('Team member deactivated')
     },
     onError: (error: unknown) => {
-      toast.error(error instanceof ApiError ? error.message : 'Could not deactivate the team member')
+      toast.error(
+        error instanceof ApiError ? error.message : 'Could not deactivate the team member',
+      )
     },
   })
 }

@@ -75,9 +75,7 @@ export function DataTable<T>({
 
   // The skeleton mirrors the shape of the real rows, so the table does not
   // change height when the data arrives.
-  const placeholderRows = isLoading
-    ? Array.from({ length: skeletonRows }, (_, index) => index)
-    : []
+  const placeholderRows = isLoading ? Array.from({ length: skeletonRows }, (_, index) => index) : []
 
   return (
     <div
@@ -155,10 +153,7 @@ export function DataTable<T>({
                   >
                     <span
                       aria-hidden="true"
-                      className={cn(
-                        'skeleton block h-3.5',
-                        column.primary ? 'w-32' : 'w-20',
-                      )}
+                      className={cn('skeleton block h-3.5', column.primary ? 'w-32' : 'w-20')}
                     />
                   </td>
                 ))}
@@ -209,10 +204,7 @@ export function DataTable<T>({
             <li
               key={rowKey(row)}
               onClick={onRowClick ? () => onRowClick(row) : undefined}
-              className={cn(
-                'px-4 py-3.5',
-                onRowClick && 'cursor-pointer active:bg-surface-sunken',
-              )}
+              className={cn('px-4 py-3.5', onRowClick && 'cursor-pointer active:bg-surface-sunken')}
             >
               {primary ? (
                 <div className="mb-1.5 font-medium text-ink">{primary.cell(row)}</div>

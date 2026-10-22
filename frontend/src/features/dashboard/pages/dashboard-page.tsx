@@ -60,9 +60,10 @@ import type { DealStatus, UpcomingTask } from '@/types/api'
  * same status always agree and follow the active theme.
  */
 const STATUS_FILLS: Record<DealStatus, string> = Object.fromEntries(
-  (Object.entries(DEAL_STATUS_VISUAL) as [DealStatus, StatusVisual][]).map(
-    ([status, visual]) => [status, visual.fill],
-  ),
+  (Object.entries(DEAL_STATUS_VISUAL) as [DealStatus, StatusVisual][]).map(([status, visual]) => [
+    status,
+    visual.fill,
+  ]),
 ) as Record<DealStatus, string>
 
 export function DashboardPage() {
@@ -77,10 +78,7 @@ export function DashboardPage() {
   const tasksQuery = useUpcomingTasks(6)
 
   const metrics = overview.data?.metrics
-  const pipeline = useMemo(
-    () => buildPipelineData(pipelineQuery.data ?? []),
-    [pipelineQuery.data],
-  )
+  const pipeline = useMemo(() => buildPipelineData(pipelineQuery.data ?? []), [pipelineQuery.data])
 
   return (
     <>
@@ -143,7 +141,12 @@ export function DashboardPage() {
         </div>
 
         <div className="mt-3 grid grid-cols-2 gap-3 md:grid-cols-4">
-          <StatCard label="Won deals" value={metrics ? metrics.won_deals : '—'} icon={BadgeCheck} tone="success" />
+          <StatCard
+            label="Won deals"
+            value={metrics ? metrics.won_deals : '—'}
+            icon={BadgeCheck}
+            tone="success"
+          />
           <StatCard
             label="Lost deals"
             value={metrics ? metrics.lost_deals : '—'}
@@ -314,9 +317,7 @@ export function DashboardPage() {
                   <UpcomingTaskRow
                     key={task.id}
                     task={task}
-                    isCompleting={
-                      updateTask.isPending && updateTask.variables?.id === task.id
-                    }
+                    isCompleting={updateTask.isPending && updateTask.variables?.id === task.id}
                     onComplete={() =>
                       updateTask.mutate({ id: task.id, payload: { status: 'completed' } })
                     }
@@ -409,7 +410,9 @@ function UpcomingTaskRow({
           'flex size-[1.125rem] shrink-0 items-center justify-center rounded-[5px] border transition-colors duration-150',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600/30',
           'disabled:cursor-not-allowed disabled:opacity-60',
-          task.overdue ? 'border-warning hover:border-brand-600' : 'border-input hover:border-brand-600',
+          task.overdue
+            ? 'border-warning hover:border-brand-600'
+            : 'border-input hover:border-brand-600',
         )}
       >
         <Check className="size-3 text-transparent" aria-hidden="true" />

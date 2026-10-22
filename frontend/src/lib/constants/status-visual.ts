@@ -13,15 +13,7 @@ import type { ActivityType, DealStatus, TaskPriority, TaskStatus } from '@/types
 
 /** The tones a badge can take. */
 export type BadgeTone =
-  | 'neutral'
-  | 'brand'
-  | 'success'
-  | 'warning'
-  | 'danger'
-  | 'info'
-  | 'violet'
-  | 'teal'
-  | 'outline'
+  'neutral' | 'brand' | 'success' | 'warning' | 'danger' | 'info' | 'violet' | 'teal' | 'outline'
 
 export interface StatusVisual {
   /** The badge tone. */

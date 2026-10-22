@@ -110,13 +110,7 @@ export interface Customer {
 }
 
 export type DealStatus =
-  | 'new'
-  | 'contacted'
-  | 'qualified'
-  | 'proposal'
-  | 'negotiation'
-  | 'won'
-  | 'lost'
+  'new' | 'contacted' | 'qualified' | 'proposal' | 'negotiation' | 'won' | 'lost'
 
 export interface Deal {
   id: string

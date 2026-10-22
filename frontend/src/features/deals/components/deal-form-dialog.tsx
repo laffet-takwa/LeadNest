@@ -18,7 +18,13 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog'
 import { Input, Textarea } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { useCreateDeal, useUpdateDeal } from '@/features/deals/hooks/use-deals'
 import { useCustomers } from '@/features/customers/hooks/use-customers'
 import { useAssigneeOptions } from '@/features/companies/hooks/use-company'
@@ -144,7 +150,12 @@ export function DealFormDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <form onSubmit={(event) => { void onSubmit(event) }} noValidate>
+        <form
+          onSubmit={(event) => {
+            void onSubmit(event)
+          }}
+          noValidate
+        >
           <DialogBody className="space-y-4">
             <FormField label="Title" htmlFor="deal-title" error={errors.title?.message} required>
               <Input
@@ -164,7 +175,9 @@ export function DealFormDialog({
               >
                 <Select
                   value={selectedCustomerId || undefined}
-                  onValueChange={(value) => setValue('customer_id', value, { shouldValidate: true })}
+                  onValueChange={(value) =>
+                    setValue('customer_id', value, { shouldValidate: true })
+                  }
                 >
                   <SelectTrigger id="deal-customer" aria-label="Customer">
                     <SelectValue placeholder="Choose a customer" />

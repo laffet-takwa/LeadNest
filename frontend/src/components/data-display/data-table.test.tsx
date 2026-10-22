@@ -35,13 +35,7 @@ describe('DataTable', () => {
 
   it('shows a loading placeholder instead of the rows', () => {
     render(
-      <DataTable
-        columns={COLUMNS}
-        rows={[]}
-        rowKey={(row) => row.id}
-        isLoading
-        skeletonRows={3}
-      />,
+      <DataTable columns={COLUMNS} rows={[]} rowKey={(row) => row.id} isLoading skeletonRows={3} />,
     )
 
     expect(screen.queryByText('Amira Ben Salah')).not.toBeInTheDocument()

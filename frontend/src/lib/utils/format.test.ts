@@ -7,7 +7,13 @@
 
 import { describe, expect, it } from 'vitest'
 
-import { addAmounts, formatAmount, formatCompactNumber, formatMoney, sumByCurrency } from '@/lib/utils/format'
+import {
+  addAmounts,
+  formatAmount,
+  formatCompactNumber,
+  formatMoney,
+  sumByCurrency,
+} from '@/lib/utils/format'
 
 describe('formatAmount', () => {
   it('adds thousands separators and keeps two decimals', () => {

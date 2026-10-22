@@ -88,9 +88,7 @@ export function DatePicker({
   const maxDate = useMemo(() => parseDateOnly(max), [max])
 
   const [open, setOpen] = useState(false)
-  const [viewMonth, setViewMonth] = useState<Date>(() =>
-    startOfMonth(selected ?? new Date()),
-  )
+  const [viewMonth, setViewMonth] = useState<Date>(() => startOfMonth(selected ?? new Date()))
   const [focusedDate, setFocusedDate] = useState<Date>(() => selected ?? new Date())
 
   useEffect(() => {
@@ -194,11 +192,10 @@ export function DatePicker({
               className,
             )}
           >
-            <span className="truncate">{selected ? format(selected, 'd MMM yyyy') : placeholder}</span>
-            <ChevronRight
-              className="size-4 shrink-0 rotate-90 text-ink-muted"
-              aria-hidden="true"
-            />
+            <span className="truncate">
+              {selected ? format(selected, 'd MMM yyyy') : placeholder}
+            </span>
+            <ChevronRight className="size-4 shrink-0 rotate-90 text-ink-muted" aria-hidden="true" />
           </button>
         </PopoverPrimitive.Trigger>
 

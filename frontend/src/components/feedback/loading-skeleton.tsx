@@ -14,20 +14,11 @@ export function LoadingSkeleton({ className, ...props }: React.HTMLAttributes<HT
 }
 
 /** A stack of text lines, used inside a card or a panel. */
-export function TextSkeleton({
-  lines = 3,
-  className,
-}: {
-  lines?: number
-  className?: string
-}) {
+export function TextSkeleton({ lines = 3, className }: { lines?: number; className?: string }) {
   return (
     <div className={cn('space-y-2', className)} aria-hidden="true">
       {Array.from({ length: lines }, (_, index) => (
-        <Skeleton
-          key={index}
-          className={cn('h-3.5', index === lines - 1 ? 'w-2/3' : 'w-full')}
-        />
+        <Skeleton key={index} className={cn('h-3.5', index === lines - 1 ? 'w-2/3' : 'w-full')} />
       ))}
     </div>
   )
@@ -45,7 +36,10 @@ export function TableSkeleton({
 }) {
   return (
     <div
-      className={cn('divide-y divide-border rounded-card border border-border bg-surface', className)}
+      className={cn(
+        'divide-y divide-border rounded-card border border-border bg-surface',
+        className,
+      )}
       aria-hidden="true"
     >
       {Array.from({ length: rows }, (_, rowIndex) => (
@@ -80,13 +74,7 @@ export function StatSkeleton({ className }: { className?: string }) {
 }
 
 /** A row of statistic cards. */
-export function StatGridSkeleton({
-  count = 4,
-  className,
-}: {
-  count?: number
-  className?: string
-}) {
+export function StatGridSkeleton({ count = 4, className }: { count?: number; className?: string }) {
   return (
     <div
       className={cn('grid grid-cols-1 gap-3 sm:grid-cols-2 xl:grid-cols-4', className)}
@@ -100,13 +88,7 @@ export function StatGridSkeleton({
 }
 
 /** A panel with a heading and a few lines of content. */
-export function PanelSkeleton({
-  className,
-  lines = 4,
-}: {
-  className?: string
-  lines?: number
-}) {
+export function PanelSkeleton({ className, lines = 4 }: { className?: string; lines?: number }) {
   return (
     <div
       className={cn('rounded-card border border-border bg-surface p-4 shadow-xs', className)}

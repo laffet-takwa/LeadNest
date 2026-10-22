@@ -33,7 +33,10 @@ export const aiApi = {
   },
 
   /** `GET /ai/history` — the recorded AI interactions. */
-  history(params: { limit?: number; offset?: number; type?: string } = {}, options?: { signal?: AbortSignal }) {
+  history(
+    params: { limit?: number; offset?: number; type?: string } = {},
+    options?: { signal?: AbortSignal },
+  ) {
     return getList<AIInteraction>('/ai/history', { ...options, query: { ...params } })
   },
 }

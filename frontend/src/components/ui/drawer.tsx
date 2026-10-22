@@ -14,8 +14,9 @@ import { cn } from '@/lib/utils'
 
 export const Drawer = DialogPrimitive.Root
 
-export interface DrawerContentProps
-  extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> {
+export interface DrawerContentProps extends React.ComponentPropsWithoutRef<
+  typeof DialogPrimitive.Content
+> {
   /** Which edge the drawer slides in from. */
   side?: 'left' | 'right'
   /** Accessible name for the drawer. */
@@ -95,11 +96,11 @@ export const DrawerContent = forwardRef<
 })
 
 export function DrawerBody({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return <div className={cn('min-h-0 flex-1 overflow-y-auto scrollbar-thin', className)} {...props} />
+  return (
+    <div className={cn('min-h-0 flex-1 overflow-y-auto scrollbar-thin', className)} {...props} />
+  )
 }
 
 export function DrawerFooter({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
-  return (
-    <div className={cn('shrink-0 border-t border-border p-4', className)} {...props} />
-  )
+  return <div className={cn('shrink-0 border-t border-border p-4', className)} {...props} />
 }

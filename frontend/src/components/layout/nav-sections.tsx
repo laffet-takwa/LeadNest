@@ -65,7 +65,9 @@ export function NavSections({
                         ? 'text-sidebar-text hover:bg-sidebar-hover hover:text-white'
                         : 'text-ink-secondary hover:bg-surface-sunken hover:text-ink',
                       isActive &&
-                        (onDark ? 'bg-sidebar-active text-white' : 'bg-brand-soft text-brand-soft-text'),
+                        (onDark
+                          ? 'bg-sidebar-active text-white'
+                          : 'bg-brand-soft text-brand-soft-text'),
                     )
                   }
                 >

@@ -81,7 +81,12 @@ export function Sidebar({
       </div>
 
       <nav className="flex-1 overflow-y-auto scrollbar-thin px-3 py-4">
-        <NavSections isAdmin={isAdmin} collapsed={collapsed} onNavigate={onNavigate} variant="sidebar" />
+        <NavSections
+          isAdmin={isAdmin}
+          collapsed={collapsed}
+          onNavigate={onNavigate}
+          variant="sidebar"
+        />
       </nav>
 
       <div className="shrink-0 border-t border-sidebar-border p-3">
@@ -113,7 +118,9 @@ export function Sidebar({
           <div className="flex items-center gap-2.5">
             <Avatar name={user?.full_name ?? '?'} size="sm" />
             <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium text-white">{user?.full_name ?? 'Signed in'}</p>
+              <p className="truncate text-sm font-medium text-white">
+                {user?.full_name ?? 'Signed in'}
+              </p>
               <p className="truncate text-2xs text-sidebar-text/70">
                 {company?.name ?? user?.email}
               </p>

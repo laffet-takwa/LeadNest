@@ -3,11 +3,7 @@
  */
 
 import { getList, getOne, post } from '@/lib/api/client'
-import type {
-  Activity,
-  ActivityListParams,
-  ActivityPayload,
-} from '@/types/api'
+import type { Activity, ActivityListParams, ActivityPayload } from '@/types/api'
 
 export const activitiesApi = {
   /** `GET /activities` — a paginated, filtered feed. */

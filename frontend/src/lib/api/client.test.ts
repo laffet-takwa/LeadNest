@@ -7,7 +7,13 @@
 
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { ApiError, buildQuery, request, setTokenProvider, setUnauthorizedHandler } from '@/lib/api/client'
+import {
+  ApiError,
+  buildQuery,
+  request,
+  setTokenProvider,
+  setUnauthorizedHandler,
+} from '@/lib/api/client'
 
 describe('buildQuery', () => {
   it('returns an empty string when there is nothing to send', () => {
@@ -116,7 +122,8 @@ describe('request', () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: false,
       status: 404,
-      text: () => Promise.resolve(JSON.stringify({ error: { code: 'NOT_FOUND', message: 'not found' } })),
+      text: () =>
+        Promise.resolve(JSON.stringify({ error: { code: 'NOT_FOUND', message: 'not found' } })),
     })
 
     try {
@@ -147,9 +154,7 @@ describe('request', () => {
   })
 
   it('reports a network failure without leaking internals', async () => {
-    global.fetch = vi
-      .fn()
-      .mockRejectedValue(new TypeError('Failed to fetch'))
+    global.fetch = vi.fn().mockRejectedValue(new TypeError('Failed to fetch'))
 
     try {
       await request('/customers')
@@ -167,7 +172,8 @@ describe('request', () => {
     global.fetch = vi.fn().mockResolvedValue({
       ok: false,
       status: 401,
-      text: () => Promise.resolve(JSON.stringify({ error: { code: 'UNAUTHORIZED', message: 'nope' } })),
+      text: () =>
+        Promise.resolve(JSON.stringify({ error: { code: 'UNAUTHORIZED', message: 'nope' } })),
     })
 
     await expect(request('/customers')).rejects.toThrowError(ApiError)

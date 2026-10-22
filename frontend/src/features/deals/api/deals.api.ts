@@ -3,13 +3,7 @@
  */
 
 import { getList, getOne, patch, post, remove } from '@/lib/api/client'
-import type {
-  Deal,
-  DealListParams,
-  DealPatch,
-  DealPayload,
-  DealWithCustomer,
-} from '@/types/api'
+import type { Deal, DealListParams, DealPatch, DealPayload, DealWithCustomer } from '@/types/api'
 
 export const dealsApi = {
   /** `GET /deals` — a paginated, filtered list. */

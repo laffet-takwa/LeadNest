@@ -65,4 +65,3 @@ export function fieldA11y(id: string, error?: string) {
     'aria-describedby': error ? `${id}-error` : undefined,
   } as const
 }
-

@@ -28,7 +28,13 @@ import { Button } from '@/components/ui/button'
 import { Card, CardBody, CardHeader, CardTitle } from '@/components/ui/badge'
 import { Combobox } from '@/components/ui/combobox'
 import { Input, Textarea } from '@/components/ui/input'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/overlays'
 import { Pagination } from '@/components/data-display/list-controls'
 import { EmptyState, ErrorState } from '@/components/feedback/state'
@@ -276,7 +282,9 @@ function EmailDraftPanel({ customerId }: { customerId: string }) {
           {generate.error ? (
             <ErrorState
               title={
-                generate.error instanceof ApiError ? aiErrorTitle(generate.error) : 'Generation failed'
+                generate.error instanceof ApiError
+                  ? aiErrorTitle(generate.error)
+                  : 'Generation failed'
               }
               description={generate.error.message}
               onRetry={onGenerate}
@@ -377,7 +385,9 @@ function CustomerSummaryPanel({ customerId }: { customerId: string }) {
         {generate.error ? (
           <ErrorState
             title={
-              generate.error instanceof ApiError ? aiErrorTitle(generate.error) : 'Generation failed'
+              generate.error instanceof ApiError
+                ? aiErrorTitle(generate.error)
+                : 'Generation failed'
             }
             description={generate.error.message}
           />
@@ -436,7 +446,9 @@ function FollowUpPanel() {
         {generate.error ? (
           <ErrorState
             title={
-              generate.error instanceof ApiError ? aiErrorTitle(generate.error) : 'Generation failed'
+              generate.error instanceof ApiError
+                ? aiErrorTitle(generate.error)
+                : 'Generation failed'
             }
             description={generate.error.message}
             onRetry={() => generate.mutate({ limit: 10 })}
@@ -457,7 +469,9 @@ function FollowUpPanel() {
                 <Avatar name={suggestion.customer_name} size="sm" />
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-center gap-2">
-                    <p className="truncate text-sm font-medium text-ink">{suggestion.customer_name}</p>
+                    <p className="truncate text-sm font-medium text-ink">
+                      {suggestion.customer_name}
+                    </p>
                     <span
                       className={cn(
                         'rounded-full px-2 py-0.5 text-2xs font-medium capitalize',
@@ -546,7 +560,9 @@ function HistoryPanel() {
                     {item.interaction_type.replace(/_/g, ' ')}
                   </p>
                   {item.response ? (
-                    <p className="mt-0.5 line-clamp-2 text-xs text-ink-secondary">{item.response}</p>
+                    <p className="mt-0.5 line-clamp-2 text-xs text-ink-secondary">
+                      {item.response}
+                    </p>
                   ) : null}
                   <p className="mt-1 text-2xs text-ink-muted">
                     {item.model ? `${item.model} · ` : ''}

@@ -30,7 +30,8 @@ const badgeVariants = cva(
   },
 )
 
-export interface BadgeProps extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
+export interface BadgeProps
+  extends HTMLAttributes<HTMLSpanElement>, VariantProps<typeof badgeVariants> {}
 
 export function Badge({ className, tone, ...props }: BadgeProps) {
   return <span className={cn(badgeVariants({ tone }), className)} {...props} />
@@ -76,4 +77,3 @@ export function CardBody({ className, ...props }: HTMLAttributes<HTMLDivElement>
 export function Skeleton({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
   return <div aria-hidden="true" className={cn('skeleton h-4 w-full', className)} {...props} />
 }
-

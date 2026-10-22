@@ -91,10 +91,7 @@ export function TaskCard({
           <PriorityBadge priority={task.priority} />
           {task.due_date ? (
             <span
-              className={cn(
-                'text-2xs',
-                isOverdue ? 'font-medium text-warning' : 'text-ink-muted',
-              )}
+              className={cn('text-2xs', isOverdue ? 'font-medium text-warning' : 'text-ink-muted')}
             >
               {describeDueDate(task.due_date)}
             </span>

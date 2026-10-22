@@ -55,7 +55,9 @@ export function Topbar({
         <Menu className="size-5" aria-hidden="true" />
       </Button>
 
-      <h1 className="min-w-0 flex-1 truncate text-base font-semibold text-ink md:text-lg">{title}</h1>
+      <h1 className="min-w-0 flex-1 truncate text-base font-semibold text-ink md:text-lg">
+        {title}
+      </h1>
 
       <GlobalSearch className="hidden w-64 lg:block" />
 
@@ -74,7 +76,9 @@ export function Topbar({
         <DropdownMenuContent align="end" className="w-56">
           <DropdownMenuLabel className="normal-case">
             <span className="block text-sm font-medium text-ink">{user?.full_name}</span>
-            <span className="block truncate text-2xs font-normal text-ink-muted">{user?.email}</span>
+            <span className="block truncate text-2xs font-normal text-ink-muted">
+              {user?.email}
+            </span>
             {company ? (
               <span className="mt-1 block truncate text-2xs font-normal text-ink-muted">
                 {company.name}
@@ -133,10 +137,7 @@ export function MobileNav({
         }
       >
         <DrawerBody className="px-3 py-4">
-          <GlobalSearch
-            className="mb-4"
-            onNavigate={() => onOpenChange(false)}
-          />
+          <GlobalSearch className="mb-4" onNavigate={() => onOpenChange(false)} />
           <nav aria-label="Main navigation">
             <NavSections
               isAdmin={isAdmin}

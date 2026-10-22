@@ -65,7 +65,9 @@ export function ActivitiesPage() {
     )
   }
 
-  const hasFilters = Boolean(params.type || params.customer_id || params.user_id || params.from || params.to)
+  const hasFilters = Boolean(
+    params.type || params.customer_id || params.user_id || params.from || params.to,
+  )
 
   return (
     <>
@@ -137,7 +139,9 @@ export function ActivitiesPage() {
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setParam({ type: null, customer_id: null, user_id: null, from: null, to: null })}
+                onClick={() =>
+                  setParam({ type: null, customer_id: null, user_id: null, from: null, to: null })
+                }
               >
                 Clear filters
               </Button>
