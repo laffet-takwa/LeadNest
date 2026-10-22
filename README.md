@@ -14,6 +14,53 @@ together with Docker Compose.
 
 ---
 
+## Screens
+
+Every image below is rendered by Chromium against the running stack, and every
+row of data was written through the real API — nothing is mocked. Regenerate
+them with `npx playwright test e2e/screenshots.spec.ts` from `frontend/`; they
+land in [`docs/screenshots/`](docs/screenshots).
+
+### Dashboard
+
+<img src="docs/screenshots/03-dashboard.png" alt="Dashboard showing customer, deal, revenue and task metrics, a sales pipeline chart by status, upcoming tasks with an overdue item flagged, and a recent activity timeline" width="100%">
+
+### Customers
+
+| The list, with search, filters and server-side pagination | The record, with its deals and activity |
+| :-- | :-- |
+| <img src="docs/screenshots/04-customers.png" alt="Customers table with name, email, phone, company, source, assignee and row actions" width="100%"> | <img src="docs/screenshots/05-customer-detail.png" alt="Customer detail page with contact card, notes, related deals and AI and task actions" width="100%"> |
+| <img src="docs/screenshots/13-customer-form.png" alt="Add customer dialog with labelled fields and validation" width="100%"> | <img src="docs/screenshots/15-customers-mobile.png" alt="Customers on a phone, where the table becomes data cards" width="100%"> |
+
+### Sales pipeline
+
+| The board, one column per status | A single deal |
+| :-- | :-- |
+| <img src="docs/screenshots/06-pipeline.png" alt="Sales pipeline board with deal cards showing value, customer, assignee, close date and a status control" width="100%"> | <img src="docs/screenshots/07-deal-detail.png" alt="Deal detail page with value, status, assignee and description" width="100%"> |
+| <img src="docs/screenshots/16-pipeline-mobile.png" alt="Sales pipeline on a phone" width="100%"> | <img src="docs/screenshots/08-tasks.png" alt="Tasks list with due dates, priorities and an overdue task highlighted" width="100%"> |
+
+### Work and intelligence
+
+| Activities | AI assistant |
+| :-- | :-- |
+| <img src="docs/screenshots/09-activities.png" alt="Chronological activity timeline of calls, emails, meetings and notes" width="100%"> | <img src="docs/screenshots/10-ai.png" alt="AI assistant with email draft, customer summary, follow-up suggestions and history tabs" width="100%"> |
+
+| Team | Settings |
+| :-- | :-- |
+| <img src="docs/screenshots/12-team.png" alt="Team management with roles and an assignee picker per member" width="100%"> | <img src="docs/screenshots/11-settings.png" alt="Settings split into company, profile and security forms" width="100%"> |
+
+### Signing in
+
+| Register a company | Sign in | Mobile dashboard |
+| :-- | :-- | :-- |
+| <img src="docs/screenshots/02-register.png" alt="Registration form that creates the company and its first administrator in one step" width="100%"> | <img src="docs/screenshots/01-login.png" alt="Login form" width="100%"> | <img src="docs/screenshots/14-dashboard-mobile.png" alt="Dashboard on a phone, with the sidebar collapsed to a drawer" width="100%"> |
+
+The AI assistant is shown without a provider configured, which is how the API
+answers when `AI_PROVIDER` is empty: the screen stays usable and every
+generation reports that it is unavailable rather than inventing an answer.
+
+---
+
 ## Layout
 
 ```
