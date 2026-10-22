@@ -1,0 +1,25 @@
+services:
+  db-test:
+    image: postgres:16-alpine
+    container_name: leadnest-db-test
+    environment:
+      POSTGRES_USER: leadnest
+      POSTGRES_PASSWORD: leadnest
+      POSTGRES_DB: leadnest_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U leadnest -d leadnest_test"]
+      interval: 3s
+      timeout: 5s
+      retries: 20
+
+  tests:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.test
+    depends_on:
+      db-test:
+        condition: service_healthy
+    environment:
+      TEST_DATABASE_URL: postgres://leadnest:leadnest@db-test:5432/leadnest_test?sslmode=disable
+    command: >
+      sh -c "go test -count=1 -tags=integration -v ./tests/..."

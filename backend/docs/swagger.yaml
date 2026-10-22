@@ -1,0 +1,2483 @@
+basePath: /api/v1
+definitions:
+  activities.createRequest:
+    properties:
+      deal_id:
+        type: string
+      description:
+        maxLength: 10000
+        type: string
+      occurred_at:
+        type: string
+      subject:
+        maxLength: 255
+        type: string
+      type:
+        type: string
+    required:
+    - type
+    type: object
+  ai.customerSummaryRequest:
+    properties:
+      customer_id:
+        type: string
+    required:
+    - customer_id
+    type: object
+  ai.customerSummaryResponse:
+    properties:
+      model:
+        type: string
+      provider:
+        type: string
+      summary:
+        type: string
+      warning:
+        type: string
+    type: object
+  ai.emailDraftRequest:
+    properties:
+      customer_id:
+        type: string
+      deal_id:
+        type: string
+      language:
+        maxLength: 10
+        type: string
+      notes:
+        maxLength: 2000
+        type: string
+      tone:
+        maxLength: 40
+        type: string
+    required:
+    - customer_id
+    type: object
+  ai.emailDraftResponse:
+    properties:
+      draft:
+        type: string
+      model:
+        type: string
+      provider:
+        type: string
+      subject:
+        type: string
+      warning:
+        type: string
+    type: object
+  ai.followUpRequest:
+    properties:
+      limit:
+        type: integer
+    type: object
+  ai.followUpResponse:
+    properties:
+      model:
+        type: string
+      provider:
+        type: string
+      suggestions:
+        items:
+          $ref: '#/definitions/ai.followUpSuggestion'
+        type: array
+      warning:
+        type: string
+    type: object
+  ai.followUpSuggestion:
+    properties:
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      priority:
+        type: string
+      reason:
+        type: string
+    type: object
+  companies.getMeResponse:
+    properties:
+      company:
+        $ref: '#/definitions/models.Company'
+    type: object
+  companies.updateMeRequest:
+    properties:
+      email:
+        type: string
+      name:
+        maxLength: 200
+        minLength: 1
+        type: string
+      phone:
+        type: string
+      website:
+        maxLength: 2048
+        type: string
+    required:
+    - name
+    type: object
+  customers.CustomerWithDetails:
+    properties:
+      activities:
+        items:
+          $ref: '#/definitions/models.Activity'
+        type: array
+      assigned_to:
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      deals:
+        items:
+          $ref: '#/definitions/models.Deal'
+        type: array
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      phone:
+        type: string
+      source:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  customers.createReq:
+    properties:
+      assigned_to:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      phone:
+        type: string
+      source:
+        maxLength: 200
+        type: string
+    required:
+    - full_name
+    type: object
+  customers.updateReq:
+    properties:
+      assigned_to:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      phone:
+        type: string
+      source:
+        maxLength: 200
+        type: string
+    type: object
+  dashboard.Metrics:
+    properties:
+      lost_deals:
+        type: integer
+      open_deals:
+        type: integer
+      overdue_tasks:
+        type: integer
+      pending_tasks:
+        type: integer
+      total_customers:
+        type: integer
+      won_deals:
+        type: integer
+      won_revenue_tnd:
+        type: string
+    type: object
+  dashboard.Overview:
+    properties:
+      deals_by_status:
+        items:
+          $ref: '#/definitions/dashboard.StatusBucket'
+        type: array
+      metrics:
+        $ref: '#/definitions/dashboard.Metrics'
+      recent_activities:
+        items:
+          $ref: '#/definitions/dashboard.RecentActivity'
+        type: array
+      revenue_by_currency:
+        items:
+          $ref: '#/definitions/dashboard.RevenueByCurrency'
+        type: array
+      upcoming_tasks:
+        items:
+          $ref: '#/definitions/dashboard.UpcomingTask'
+        type: array
+    type: object
+  dashboard.RecentActivity:
+    properties:
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      occurred_at:
+        type: string
+      subject:
+        type: string
+      type:
+        type: string
+      user_id:
+        type: string
+      user_name:
+        type: string
+    type: object
+  dashboard.RevenueByCurrency:
+    properties:
+      count:
+        type: integer
+      currency:
+        type: string
+      value:
+        type: string
+    type: object
+  dashboard.StatusBucket:
+    properties:
+      count:
+        type: integer
+      currency:
+        type: string
+      status:
+        type: string
+      value:
+        type: string
+    type: object
+  dashboard.UpcomingTask:
+    properties:
+      assigned_to:
+        type: string
+      assignee_name:
+        type: string
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: string
+      overdue:
+        type: boolean
+      priority:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+    type: object
+  deals.DealWithCustomer:
+    properties:
+      assigned_to:
+        type: string
+      closed_at:
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      currency:
+        type: string
+      customer_id:
+        type: string
+      customer_name:
+        type: string
+      expected_close:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      value:
+        type: string
+    type: object
+  deals.createRequest:
+    properties:
+      assigned_to:
+        type: string
+      currency:
+        type: string
+      customer_id:
+        type: string
+      expected_close:
+        type: string
+      status:
+        maxLength: 20
+        type: string
+      title:
+        maxLength: 255
+        type: string
+      value:
+        type: string
+    required:
+    - customer_id
+    - title
+    - value
+    type: object
+  deals.updateRequest:
+    properties:
+      assigned_to:
+        type: string
+      currency:
+        type: string
+      customer_id:
+        type: string
+      expected_close:
+        type: string
+      status:
+        maxLength: 20
+        type: string
+      title:
+        maxLength: 255
+        type: string
+      value:
+        type: string
+    type: object
+  health.healthResponse:
+    properties:
+      status:
+        type: string
+      uptime_seconds:
+        type: integer
+      version:
+        type: string
+    type: object
+  health.readyResponse:
+    properties:
+      database:
+        type: string
+      status:
+        type: string
+      storage:
+        type: string
+    type: object
+  models.AIInteraction:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      duration_ms:
+        type: integer
+      id:
+        type: string
+      interaction_type:
+        type: string
+      model:
+        type: string
+      prompt:
+        type: string
+      provider:
+        type: string
+      response:
+        type: string
+      user_id:
+        type: string
+    type: object
+  models.Activity:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      customer_id:
+        type: string
+      deal_id:
+        type: string
+      description:
+        type: string
+      id:
+        type: string
+      occurred_at:
+        type: string
+      subject:
+        type: string
+      type:
+        type: string
+      updated_at:
+        type: string
+      user_id:
+        type: string
+    type: object
+  models.Company:
+    properties:
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      phone:
+        type: string
+      updated_at:
+        type: string
+      website:
+        type: string
+    type: object
+  models.Customer:
+    properties:
+      assigned_to:
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      phone:
+        type: string
+      source:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.Deal:
+    properties:
+      assigned_to:
+        type: string
+      closed_at:
+        type: string
+      company_id:
+        type: string
+      created_at:
+        type: string
+      currency:
+        type: string
+      customer_id:
+        type: string
+      expected_close:
+        type: string
+      id:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+      value:
+        type: string
+    type: object
+  models.Task:
+    properties:
+      assigned_to:
+        type: string
+      company_id:
+        type: string
+      completed_at:
+        type: string
+      created_at:
+        type: string
+      customer_id:
+        type: string
+      deal_id:
+        type: string
+      description:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: string
+      priority:
+        type: string
+      status:
+        type: string
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  models.User:
+    properties:
+      company_id:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      full_name:
+        type: string
+      id:
+        type: string
+      is_active:
+        type: boolean
+      role:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  response.Error:
+    properties:
+      error:
+        $ref: '#/definitions/response.ErrorBody'
+    type: object
+  response.ErrorBody:
+    properties:
+      code:
+        type: string
+      details: {}
+      message:
+        type: string
+    type: object
+  response.ListMeta:
+    properties:
+      limit:
+        type: integer
+      next_cursor:
+        type: string
+      offset:
+        type: integer
+      total:
+        type: integer
+    type: object
+  response.ListResponse:
+    properties:
+      data: {}
+      meta:
+        $ref: '#/definitions/response.ListMeta'
+    type: object
+  response.Success:
+    properties:
+      data: {}
+    type: object
+  tasks.createRequest:
+    properties:
+      assigned_to:
+        type: string
+      customer_id:
+        type: string
+      deal_id:
+        type: string
+      description:
+        maxLength: 5000
+        type: string
+      due_date:
+        type: string
+      priority:
+        maxLength: 20
+        type: string
+      status:
+        maxLength: 20
+        type: string
+      title:
+        maxLength: 255
+        type: string
+    required:
+    - assigned_to
+    - title
+    type: object
+  tasks.updateRequest:
+    properties:
+      assigned_to:
+        type: string
+      customer_id:
+        type: string
+      deal_id:
+        type: string
+      description:
+        maxLength: 5000
+        type: string
+      due_date:
+        type: string
+      priority:
+        maxLength: 20
+        type: string
+      status:
+        maxLength: 20
+        type: string
+      title:
+        maxLength: 255
+        type: string
+    type: object
+  users.authResponse:
+    properties:
+      access_token:
+        type: string
+      expires_in:
+        type: integer
+      refresh_token:
+        type: string
+      token_type:
+        type: string
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  users.createEmployeeRequest:
+    properties:
+      email:
+        type: string
+      full_name:
+        type: string
+      password:
+        minLength: 8
+        type: string
+      role:
+        maxLength: 20
+        type: string
+    required:
+    - email
+    - full_name
+    - password
+    type: object
+  users.loginRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  users.meResponse:
+    properties:
+      user:
+        $ref: '#/definitions/models.User'
+    type: object
+  users.refreshRequest:
+    properties:
+      refresh_token:
+        type: string
+    required:
+    - refresh_token
+    type: object
+  users.registerRequest:
+    properties:
+      admin:
+        properties:
+          email:
+            type: string
+          full_name:
+            type: string
+          password:
+            minLength: 8
+            type: string
+        required:
+        - email
+        - full_name
+        - password
+        type: object
+      company:
+        properties:
+          email:
+            type: string
+          name:
+            type: string
+          phone:
+            type: string
+          website:
+            maxLength: 2048
+            type: string
+        required:
+        - name
+        type: object
+    type: object
+  users.updateUserRequest:
+    properties:
+      full_name:
+        maxLength: 200
+        type: string
+      is_active:
+        type: boolean
+      role:
+        maxLength: 20
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: api@leadnest.example
+    name: LeadNest API Support
+  description: |-
+    LeadNest is an AI-powered CRM for small businesses. This API manages companies, employees, customers, sales deals, follow-up tasks, activity timelines, dashboard analytics and AI-assisted drafting.
+    All endpoints are prefixed with /api/v1. Authenticated endpoints require an `Authorization: Bearer <token>` header. Every query is scoped to the caller's company.
+  license:
+    name: MIT
+  termsOfService: https://example.com/terms
+  title: LeadNest API
+  version: "1.0"
+paths:
+  /api/v1/activities:
+    get:
+      description: Returns activities of the authenticated user's company in reverse
+        chronological order.
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      - description: Filter by customer
+        in: query
+        name: customer_id
+        type: string
+      - description: Filter by deal
+        in: query
+        name: deal_id
+        type: string
+      - description: Filter by author
+        in: query
+        name: user_id
+        type: string
+      - description: Filter by activity type
+        in: query
+        name: type
+        type: string
+      - description: Lower bound on occurred_at
+        in: query
+        name: from
+        type: string
+      - description: Upper bound on occurred_at
+        in: query
+        name: to
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Activity'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List activities
+      tags:
+      - activities
+  /api/v1/activities/{id}:
+    get:
+      description: Returns an activity of the authenticated user's company.
+      parameters:
+      - description: Activity ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Activity'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get an activity
+      tags:
+      - activities
+  /api/v1/ai/customer-summary:
+    post:
+      consumes:
+      - application/json
+      description: Summarizes customer information and recent activity history. The
+        output is a suggestion, not a verified record.
+      parameters:
+      - description: Summary request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ai.customerSummaryRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/ai.customerSummaryResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Summarize a customer
+      tags:
+      - ai
+  /api/v1/ai/email-draft:
+    post:
+      consumes:
+      - application/json
+      description: Generates a professional follow-up email draft from customer and
+        deal information. The output is a suggestion and requires human review before
+        sending.
+      parameters:
+      - description: Draft request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ai.emailDraftRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/ai.emailDraftResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Generate an email draft
+      tags:
+      - ai
+  /api/v1/ai/follow-up-suggestions:
+    post:
+      consumes:
+      - application/json
+      description: Suggests customers and open deals that may need follow-up based
+        on CRM data. Suggestions require human confirmation.
+      parameters:
+      - description: Follow-up request
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/ai.followUpRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/ai.followUpResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "429":
+          description: Too Many Requests
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Suggest follow-ups
+      tags:
+      - ai
+  /api/v1/ai/history:
+    get:
+      description: Returns the AI interaction metadata recorded for the authenticated
+        user's company.
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      - description: Filter by interaction type
+        in: query
+        name: type
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.AIInteraction'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get AI interaction history
+      tags:
+      - ai
+  /api/v1/auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Verifies email and password, rejects inactive accounts, and returns
+        an access token.
+      parameters:
+      - description: Credentials
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.loginRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/users.authResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Log in
+      tags:
+      - auth
+  /api/v1/auth/logout:
+    post:
+      description: Revokes the refresh token associated with the authenticated user.
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Log out
+      tags:
+      - auth
+  /api/v1/auth/me:
+    get:
+      description: Returns the authenticated user profile.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/users.meResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get current user
+      tags:
+      - auth
+  /api/v1/auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Exchanges a valid refresh token for a new access token.
+      parameters:
+      - description: Refresh token
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.refreshRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/users.authResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Refresh access token
+      tags:
+      - auth
+  /api/v1/auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Creates a new company together with its first administrator inside
+        a single transaction.
+      parameters:
+      - description: Registration payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.registerRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/users.authResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Register a company and administrator
+      tags:
+      - auth
+  /api/v1/companies/me:
+    get:
+      description: Returns the company of the authenticated user.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/companies.getMeResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get current company
+      tags:
+      - companies
+    patch:
+      consumes:
+      - application/json
+      description: Allows administrators to update their company's name, email, phone,
+        and website.
+      parameters:
+      - description: Company update
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/companies.updateMeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Company'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Update current company
+      tags:
+      - companies
+  /api/v1/customers:
+    get:
+      description: Returns a paginated, searchable and filterable list of customers
+        for the authenticated user's company.
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      - description: Search by name, email or phone
+        in: query
+        name: search
+        type: string
+      - description: Filter by assigned employee
+        in: query
+        name: assigned_to
+        type: string
+      - description: Filter by source
+        in: query
+        name: source
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Customer'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List customers
+      tags:
+      - customers
+    post:
+      consumes:
+      - application/json
+      description: Creates a customer for the authenticated user's company.
+      parameters:
+      - description: Customer payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/customers.createReq'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Customer'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Create a customer
+      tags:
+      - customers
+  /api/v1/customers/{id}:
+    delete:
+      description: Permanently removes a customer of the authenticated user's company,
+        together with its deals, tasks and activities.
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete a customer
+      tags:
+      - customers
+    get:
+      description: Returns a customer of the authenticated user's company. Use the
+        include parameter to also return the customer's deals and recent activities.
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: 'Comma separated related records to include: deals, activities'
+        in: query
+        name: include
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/customers.CustomerWithDetails'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get a customer
+      tags:
+      - customers
+    patch:
+      consumes:
+      - application/json
+      description: Updates a customer of the authenticated user's company.
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Customer update
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/customers.updateReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Customer'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Update a customer
+      tags:
+      - customers
+  /api/v1/customers/{id}/activities:
+    get:
+      description: Returns the activity timeline of a customer in reverse chronological
+        order.
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Activity'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List customer activities
+      tags:
+      - activities
+    post:
+      consumes:
+      - application/json
+      description: Records an activity on a customer timeline. The authenticated user
+        is recorded as the author.
+      parameters:
+      - description: Customer ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Activity payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/activities.createRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Activity'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Create a customer activity
+      tags:
+      - activities
+  /api/v1/dashboard:
+    get:
+      description: Returns tenant-scoped dashboard metrics, deal pipeline, recent
+        activities and upcoming tasks.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/dashboard.Overview'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get dashboard
+      tags:
+      - dashboard
+  /api/v1/dashboard/recent-activities:
+    get:
+      description: Returns the most recent activities of the authenticated user's
+        company.
+      parameters:
+      - description: Maximum number of activities
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dashboard.RecentActivity'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get recent activities
+      tags:
+      - dashboard
+  /api/v1/dashboard/sales-pipeline:
+    get:
+      description: Returns deal counts and values grouped by status and currency.
+        Amounts are never combined across currencies.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dashboard.StatusBucket'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get sales pipeline
+      tags:
+      - dashboard
+  /api/v1/dashboard/upcoming-tasks:
+    get:
+      description: Returns pending tasks of the authenticated user's company ordered
+        by due date.
+      parameters:
+      - description: Maximum number of tasks
+        in: query
+        name: limit
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/dashboard.UpcomingTask'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get upcoming tasks
+      tags:
+      - dashboard
+  /api/v1/deals:
+    get:
+      description: Returns a paginated, filtered and sorted list of deals for the
+        authenticated user's company.
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      - description: Search by title or customer name
+        in: query
+        name: search
+        type: string
+      - description: Filter by status
+        in: query
+        name: status
+        type: string
+      - description: Filter by assigned employee
+        in: query
+        name: assigned_to
+        type: string
+      - description: Filter by customer
+        in: query
+        name: customer_id
+        type: string
+      - description: Expected close date lower bound (YYYY-MM-DD)
+        in: query
+        name: expected_close_from
+        type: string
+      - description: Expected close date upper bound (YYYY-MM-DD)
+        in: query
+        name: expected_close_to
+        type: string
+      - description: Sort field
+        in: query
+        name: sort
+        type: string
+      - description: Sort order (asc/desc)
+        in: query
+        name: order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/deals.DealWithCustomer'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List deals
+      tags:
+      - deals
+    post:
+      consumes:
+      - application/json
+      description: Creates a deal linked to a customer of the authenticated user's
+        company.
+      parameters:
+      - description: Deal payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/deals.createRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Deal'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Create a deal
+      tags:
+      - deals
+  /api/v1/deals/{id}:
+    delete:
+      description: Permanently removes a deal of the authenticated user's company.
+      parameters:
+      - description: Deal ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete a deal
+      tags:
+      - deals
+    get:
+      description: Returns a deal of the authenticated user's company.
+      parameters:
+      - description: Deal ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Deal'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get a deal
+      tags:
+      - deals
+    patch:
+      consumes:
+      - application/json
+      description: Updates a deal. Moving to won or lost records the closing timestamp.
+      parameters:
+      - description: Deal ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Deal update
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/deals.updateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Deal'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Update a deal
+      tags:
+      - deals
+  /api/v1/tasks:
+    get:
+      description: Returns a paginated and filtered list of follow-up tasks for the
+        authenticated user's company.
+      parameters:
+      - description: Page size
+        in: query
+        name: limit
+        type: integer
+      - description: Page offset
+        in: query
+        name: offset
+        type: integer
+      - description: Filter by status
+        in: query
+        name: status
+        type: string
+      - description: Filter by priority
+        in: query
+        name: priority
+        type: string
+      - description: Filter by assignee
+        in: query
+        name: assigned_to
+        type: string
+      - description: Filter by customer
+        in: query
+        name: customer_id
+        type: string
+      - description: Filter by deal
+        in: query
+        name: deal_id
+        type: string
+      - description: Due date lower bound (RFC3339 or YYYY-MM-DD)
+        in: query
+        name: due_from
+        type: string
+      - description: Due date upper bound (RFC3339 or YYYY-MM-DD)
+        in: query
+        name: due_to
+        type: string
+      - description: Only return overdue pending tasks
+        in: query
+        name: overdue
+        type: boolean
+      - description: Sort field
+        in: query
+        name: sort
+        type: string
+      - description: Sort order (asc/desc)
+        in: query
+        name: order
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.Task'
+                  type: array
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.Error'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List tasks
+      tags:
+      - tasks
+    post:
+      consumes:
+      - application/json
+      description: Creates a follow-up task assigned to a company employee.
+      parameters:
+      - description: Task payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/tasks.createRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Create a task
+      tags:
+      - tasks
+  /api/v1/tasks/{id}:
+    delete:
+      description: Permanently removes a task of the authenticated user's company.
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Delete a task
+      tags:
+      - tasks
+    get:
+      description: Returns a task of the authenticated user's company.
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Get a task
+      tags:
+      - tasks
+    patch:
+      consumes:
+      - application/json
+      description: Updates a task. Completing a task sets its completed_at timestamp.
+      parameters:
+      - description: Task ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Task update
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/tasks.updateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.Task'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Update a task
+      tags:
+      - tasks
+  /api/v1/users:
+    get:
+      description: Returns all users belonging to the authenticated user's company.
+        Administrators only.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.ListResponse'
+            - properties:
+                data:
+                  items:
+                    $ref: '#/definitions/models.User'
+                  type: array
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: List company users
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Adds a new user to the authenticated user's company. Administrators
+        only.
+      parameters:
+      - description: Employee payload
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.createEmployeeRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.User'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/response.Error'
+        "409":
+          description: Conflict
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Create an employee
+      tags:
+      - users
+  /api/v1/users/{id}:
+    delete:
+      description: Marks a user of the authenticated user's company as inactive. Administrators
+        only.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Deactivate a company user
+      tags:
+      - users
+    patch:
+      consumes:
+      - application/json
+      description: Updates a user of the authenticated user's company. Administrators
+        only.
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: User update
+        in: body
+        name: body
+        required: true
+        schema:
+          $ref: '#/definitions/users.updateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/models.User'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/response.Error'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/response.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.Error'
+        "422":
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/response.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      security:
+      - BearerAuth: []
+      summary: Update a company user
+      tags:
+      - users
+  /health:
+    get:
+      description: Returns process liveness information.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/health.healthResponse'
+              type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Liveness probe
+      tags:
+      - health
+  /ready:
+    get:
+      description: Verifies that the service can reach its database dependency.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/response.Success'
+            - properties:
+                data:
+                  $ref: '#/definitions/health.readyResponse'
+              type: object
+        "503":
+          description: Service Unavailable
+          schema:
+            $ref: '#/definitions/response.Error'
+      summary: Readiness probe
+      tags:
+      - health
+schemes:
+- http
+- https
+securityDefinitions:
+  BearerAuth:
+    description: 'JWT access token. Format: `Bearer <token>`'
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

@@ -1,0 +1,76 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: leadnest-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${DB_USER:-leadnest}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-leadnest}
+      POSTGRES_DB: ${DB_NAME:-leadnest}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - leadnest-db-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-leadnest} -d ${DB_NAME:-leadnest}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: leadnest-api
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SERVER_ADDR: :8080
+      APP_ENV: development
+      DATABASE_URL: ${DATABASE_URL:-}
+      DB_HOST: ${DB_HOST:-db}
+      DB_PORT: 5432
+      DB_NAME: ${DB_NAME:-leadnest}
+      DB_USER: ${DB_USER:-leadnest}
+      DB_PASSWORD: ${DB_PASSWORD:-leadnest}
+      DB_SSLMODE: ${DB_SSLMODE:-disable}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:-local-dev-access-secret-change-me}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:-local-dev-refresh-secret-change-me}
+      JWT_ACCESS_TTL: ${JWT_ACCESS_TTL:-15m}
+      JWT_REFRESH_TTL: ${JWT_REFRESH_TTL:-7d}
+      AI_PROVIDER: ${AI_PROVIDER:-}
+      AI_API_KEY: ${AI_API_KEY:-}
+      AI_BASE_URL: ${AI_BASE_URL:-}
+      AI_MODEL: ${AI_MODEL:-gpt-4o-mini}
+      AWS_ENDPOINT_URL_S3: ${AWS_ENDPOINT_URL_S3:-}
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY:-}
+      AWS_REGION: ${AWS_REGION:-}
+      S3_BUCKET: ${S3_BUCKET:-}
+      S3_FORCE_PATH_STYLE: ${S3_FORCE_PATH_STYLE:-true}
+      CORS_ALLOWED_ORIGINS: ${CORS_ALLOWED_ORIGINS:-http://localhost:3000}
+    ports:
+      - "8080:8080"
+    command: >
+      sh -c "/app/migrate -dir /app/migrations -action up && exec /app/api"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        # The browser talks to the API through the frontend's own origin, so the
+        # access token never crosses a CORS boundary.
+        VITE_API_BASE_URL: /api/v1
+    container_name: leadnest-frontend
+    restart: unless-stopped
+    depends_on:
+      - api
+    ports:
+      - "8081:80"
+
+volumes:
+  leadnest-db-data:

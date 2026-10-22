@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <meta
+      name="description"
+      content="LeadNest — the AI-powered CRM for small businesses. Manage customers, pipeline, tasks and follow-ups in one place."
+    />
+    <title>LeadNest</title>
+    <meta name="theme-color" content="#14213D" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0B1220" media="(prefers-color-scheme: dark)" />
+    <meta property="og:title" content="LeadNest" />
+    <meta
+      property="og:description"
+      content="LeadNest — the AI-powered CRM for small businesses. Manage customers, pipeline, tasks and follow-ups in one place."
+    />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://rsms.me/" crossorigin />
+    <link rel="dns-prefetch" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%233559E8'/%3E%3Cpath d='M9 22V10h4.2l5.6 7.6V10H23v12h-4.2l-5.6-7.6V22H9Z' fill='white'/%3E%3C/svg%3E"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>
+      <div style="padding: 2rem; font-family: system-ui, sans-serif; color: #172033">
+        <h1 style="font-size: 1.25rem">LeadNest needs JavaScript</h1>
+        <p>
+          LeadNest is an interactive application. Please enable JavaScript to sign in and manage
+          your customers.
+        </p>
+      </div>
+    </noscript>
+    <script>
+      // Applies the stored theme before the first paint, so the application
+      // never flashes the wrong colours while React boots.
+      ;(function () {
+        try {
+          var stored = window.localStorage.getItem('leadnest.theme')
+          var dark =
+            stored === 'dark' ||
+            (stored !== 'light' &&
+              window.matchMedia('(prefers-color-scheme: dark)').matches)
+          if (dark) document.documentElement.classList.add('dark')
+        } catch (error) {
+          /* Storage is unavailable: the light theme is used. */
+        }
+      })()
+    </script>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,231 @@
+/**
+ * LeadNest design tokens.
+ *
+ * This file is the single source of truth for the visual identity. Every
+ * colour, radius, shadow, motion timing and layout dimension used by the
+ * application is declared here as a CSS custom property, and the Tailwind
+ * configuration in `tailwind.config.ts` exposes them as utilities.
+ *
+ * Two themes are supported:
+ *
+ *   :root  — the light theme, the default.
+ *   .dark  — the dark theme, applied to <html> by the theme provider.
+ *
+ * Only the neutral surfaces and the semantic accent colours change between
+ * the two themes. The brand ramp and the sidebar stay constant, so the product
+ * identity does not shift with the theme.
+ *
+ * Every text/background pair used in the interface reaches at least a 4.5:1
+ * contrast ratio (WCAG 2.1 AA) in both themes.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* ---------------------------------------------------------------------- */
+  /* Neutral surfaces                                                        */
+  /* ---------------------------------------------------------------------- */
+
+  --background: 220 33% 98%;
+  --surface: 0 0% 100%;
+  --surface-muted: 220 60% 99%;
+  --surface-sunken: 223 37% 96%;
+
+  --ink: 221 38% 15%;
+  --ink-secondary: 221 13% 46%;
+  --ink-muted: 223 13% 46%;
+
+  --border: 222 33% 92%;
+  --input: 222 33% 92%;
+  --ring: 228 80% 56%;
+
+  /* ---------------------------------------------------------------------- */
+  /* Brand                                                                   */
+  /* ---------------------------------------------------------------------- */
+
+  --brand-50: 227 100% 97%;
+  --brand-100: 226 100% 94%;
+  --brand-200: 227 100% 89%;
+  --brand-300: 228 100% 82%;
+  --brand-400: 227 100% 73%;
+  --brand-500: 227 100% 66%;
+  --brand-600: 228 80% 56%;
+  --brand-700: 230 66% 46%;
+  --brand-800: 230 64% 38%;
+  --brand-900: 229 57% 31%;
+
+  --navy: 221 51% 16%;
+  --navy-soft: 221 48% 22%;
+
+  /**
+   * The "soft brand" pair is used for tinted surfaces and the text that sits
+   * on them. It is separate from the brand ramp because the ramp is a fixed
+   * identity scale, while these two values have to keep their contrast in
+   * both themes.
+   */
+  --brand-soft: 227 100% 97%;
+  --brand-soft-hover: 226 100% 94%;
+  --brand-soft-text: 230 66% 46%;
+  --brand-soft-border: 227 100% 89%;
+
+  /* Link and standalone brand text. */
+  --brand-text: 230 66% 46%;
+
+  /* ---------------------------------------------------------------------- */
+  /* Semantic colours                                                        */
+  /* ---------------------------------------------------------------------- */
+
+  --success: 142 72% 29%;
+  --success-soft: 141 84% 93%;
+  --success-border: 141 60% 82%;
+
+  --warning: 26 90% 37%;
+  --warning-soft: 48 96% 89%;
+  --warning-border: 44 88% 78%;
+
+  --danger: 4 76% 40%;
+  --danger-soft: 4 93% 94%;
+  --danger-border: 4 78% 84%;
+
+  --info: 218 80% 46%;
+  --info-soft: 209 100% 91%;
+  --info-border: 210 90% 82%;
+
+  --accent-teal: 173 80% 40%;
+  --accent-teal-soft: 167 66% 92%;
+  --accent-teal-strong: 175 77% 26%;
+
+  --accent-violet: 258 90% 66%;
+  --accent-violet-soft: 251 91% 95%;
+  --accent-violet-strong: 263 70% 50%;
+
+  /* ---------------------------------------------------------------------- */
+  /* Sidebar — always a dark surface, in both themes                        */
+  /* ---------------------------------------------------------------------- */
+
+  --sidebar: 221 51% 16%;
+  --sidebar-hover: 221 48% 22%;
+  --sidebar-active: 228 80% 56%;
+  --sidebar-text: 219 28% 82%;
+  --sidebar-border: 221 42% 25%;
+
+  /* ---------------------------------------------------------------------- */
+  /* Radii                                                                    */
+  /* ---------------------------------------------------------------------- */
+
+  --radius-control: 0.5rem;
+  --radius-input: 0.625rem;
+  --radius-card: 0.875rem;
+  --radius-panel: 1.125rem;
+  --radius-dialog: 1.25rem;
+
+  /* ---------------------------------------------------------------------- */
+  /* Elevation                                                                */
+  /* ---------------------------------------------------------------------- */
+
+  --shadow-xs: 0 1px 2px 0 rgb(16 24 40 / 0.04);
+  --shadow-sm: 0 1px 3px 0 rgb(16 24 40 / 0.06), 0 1px 2px -1px rgb(16 24 40 / 0.06);
+  --shadow-md: 0 4px 8px -2px rgb(16 24 40 / 0.08), 0 2px 4px -2px rgb(16 24 40 / 0.05);
+  --shadow-lg: 0 12px 16px -4px rgb(16 24 40 / 0.08), 0 4px 6px -2px rgb(16 24 40 / 0.03);
+  --shadow-popover: 0 16px 24px -6px rgb(16 24 40 / 0.12), 0 4px 8px -4px rgb(16 24 40 / 0.06);
+  --shadow-focus: 0 0 0 3px rgb(53 89 232 / 0.18);
+
+  /* ---------------------------------------------------------------------- */
+  /* Motion                                                                   */
+  /* ---------------------------------------------------------------------- */
+
+  --duration-fast: 120ms;
+  --duration-base: 160ms;
+  --duration-slow: 220ms;
+  --duration-slower: 280ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-soft: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* ---------------------------------------------------------------------- */
+  /* Layout                                                                   */
+  /* ---------------------------------------------------------------------- */
+
+  --sidebar-width: 15rem;
+  --sidebar-width-collapsed: 4.5rem;
+  --topbar-height: 3.75rem;
+  --content-max-width: 82rem;
+  --ring-offset-color: 255 255 255;
+}
+
+/**
+ * The dark theme. Only the neutral surfaces and the semantic accents move;
+ * the brand ramp and the sidebar stay as they are.
+ */
+.dark {
+  color-scheme: dark;
+
+  --background: 222 47% 8%;
+  --surface: 222 40% 12%;
+  --surface-muted: 222 36% 14%;
+  --surface-sunken: 222 40% 10%;
+
+  --ink: 214 32% 96%;
+  --ink-secondary: 217 20% 72%;
+  --ink-muted: 221 17% 56%;
+
+  --border: 221 28% 28%;
+  --input: 221 28% 31%;
+  --ring: 227 100% 78%;
+
+  --brand-soft: 228 45% 17%;
+  --brand-soft-hover: 228 50% 24%;
+  --brand-soft-text: 228 100% 82%;
+  --brand-soft-border: 228 55% 35%;
+
+  --brand-text: 228 100% 82%;
+
+  --success: 142 69% 58%;
+  --success-soft: 143 45% 15%;
+  --success-border: 142 45% 30%;
+
+  --warning: 43 96% 56%;
+  --warning-soft: 38 60% 14%;
+  --warning-border: 40 60% 28%;
+
+  --danger: 4 92% 69%;
+  --danger-soft: 5 55% 17%;
+  --danger-border: 4 55% 32%;
+
+  --info: 209 100% 74%;
+  --info-soft: 213 60% 16%;
+  --info-border: 210 60% 32%;
+
+  --accent-teal: 172 66% 50%;
+  --accent-teal-soft: 174 55% 13%;
+  --accent-teal-strong: 172 66% 50%;
+
+  --accent-violet: 252 95% 85%;
+  --accent-violet-soft: 253 55% 18%;
+  --accent-violet-strong: 252 95% 85%;
+
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.36), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.42), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+  --shadow-lg: 0 12px 16px -4px rgb(0 0 0 / 0.46), 0 4px 6px -2px rgb(0 0 0 / 0.28);
+  --shadow-popover: 0 16px 24px -6px rgb(0 0 0 / 0.56), 0 4px 8px -4px rgb(0 0 0 / 0.4);
+  --shadow-focus: 0 0 0 3px rgb(82 120 255 / 0.32);
+
+  --ring-offset-color: 12 17 29;
+}
+
+/* The sidebar is a permanently dark surface, so its own tokens are declared
+   once and never flip. */
+.sidebar-surface {
+  background-color: hsl(var(--sidebar));
+  color: hsl(var(--sidebar-text));
+}
+
+.sidebar-surface [data-nav-item]:hover {
+  background-color: hsl(var(--sidebar-hover));
+  color: hsl(var(--sidebar-text));
+}
+
+.sidebar-surface [data-nav-item][data-active='true'] {
+  background-color: hsl(var(--sidebar-active));
+  color: #ffffff;
+}
